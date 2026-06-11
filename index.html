@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>김정만스튜디오</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
+      background: #f7f5f2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* 프로필 영역 */
+    .profile {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 28px;
+      letter-spacing: -1px;
+      color: #f7f5f2;
+      font-weight: 700;
+    }
+
+    .profile h1 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+
+    .profile p {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* 링크 버튼들 */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: #fff;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #1a1a1a;
+      border: 1px solid #ebebeb;
+      transition: all 0.18s ease;
+      position: relative;
+    }
+
+    .link-btn:hover {
+      background: #1a1a1a;
+      color: #fff;
+      border-color: #1a1a1a;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .link-btn:hover .icon {
+      filter: invert(1);
+    }
+
+    .link-btn:hover .arrow {
+      opacity: 1;
+      color: #fff;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .icon-kmong  { background: #f0ede8; }
+    .icon-portfolio { background: #eef0eb; }
+    .icon-insta  { background: #f0e8f0; }
+    .icon-email  { background: #e8ecf0; }
+
+    .link-text {
+      flex: 1;
+    }
+
+    .link-text .label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+
+    .link-text .sub {
+      font-size: 11.5px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+
+    .link-btn:hover .sub { color: #999; }
+
+    .arrow {
+      font-size: 16px;
+      color: #ccc;
+      opacity: 0.6;
+      transition: opacity 0.18s;
+    }
+
+    /* 푸터 */
+    .footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 11px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="profile">
+      <div class="avatar">KJ</div>
+      <h1>김정만스튜디오</h1>
+      <p>공공기관·대기업 전문 상업용 일러스트<br>크몽 prime · 누적 거래 122건</p>
+    </div>
+
+    <div class="links">
+
+      <a class="link-btn" href="https://kmong.com/gig/437558" target="_blank" rel="noopener">
+        <div class="icon icon-kmong">🖌️</div>
+        <div class="link-text">
+          <div class="label">크몽에서 의뢰하기</div>
+          <div class="sub">상업용 일러스트 · 견적 문의</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="link-btn" href="https://kjmstdo.imweb.me/" target="_blank" rel="noopener">
+        <div class="icon icon-portfolio">🗂️</div>
+        <div class="link-text">
+          <div class="label">포트폴리오 보기</div>
+          <div class="sub">공공기관 · 브랜드 · 캐릭터 작업물</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="link-btn" href="https://www.instagram.com/kjmstdo/" target="_blank" rel="noopener">
+        <div class="icon icon-insta">📷</div>
+        <div class="link-text">
+          <div class="label">인스타그램</div>
+          <div class="sub">@kjmstdo</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+      <a class="link-btn" href="mailto:kjmstdo.kr@gmail.com">
+        <div class="icon icon-email">✉️</div>
+        <div class="link-text">
+          <div class="label">이메일 문의</div>
+          <div class="sub">kjmstdo.kr@gmail.com</div>
+        </div>
+        <span class="arrow">›</span>
+      </a>
+
+    </div>
+
+    <div class="footer">© 김정만스튜디오</div>
+
+  </div>
+</body>
+</html>
