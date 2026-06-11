@@ -3,199 +3,884 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>김정만스튜디오</title>
+  <title>김정만스튜디오 — 상업용 일러스트 의뢰</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #1a1a1a;
+      --gray: #888;
+      --light-gray: #f0eeea;
+      --border: #e8e6e2;
+      --white: #ffffff;
+      --bg: #f8f7f5;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', sans-serif;
-      background: #f7f5f2;
-      min-height: 100vh;
+      font-family: 'Helvetica Neue', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248,247,245,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
+      justify-content: space-between;
+      height: 56px;
     }
-
-    .container {
-      width: 100%;
-      max-width: 420px;
-    }
-
-    /* 프로필 영역 */
-    .profile {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      font-size: 28px;
-      letter-spacing: -1px;
-      color: #f7f5f2;
+    .nav-logo {
+      font-size: 15px;
       font-weight: 700;
-    }
-
-    .profile h1 {
-      font-size: 18px;
-      font-weight: 700;
-      color: #1a1a1a;
       letter-spacing: -0.3px;
-      margin-bottom: 6px;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13.5px;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta {
+      background: var(--black) !important;
+      color: var(--white) !important;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 5vw, 40px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 em { font-style: normal; opacity: 0.4; }
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      max-width: 460px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .stat {
+      flex: 1;
+      min-width: 120px;
+      padding: 18px 12px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; display: block; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.45); margin-top: 2px; display: block; }
+
+    /* ─── CLIENTS ─── */
+    .clients {
+      padding: 40px 24px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .clients-label {
+      font-size: 11.5px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+    .clients-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .client-tag {
+      font-size: 12.5px;
+      color: #555;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 14px;
     }
 
-    .profile p {
-      font-size: 13px;
-      color: #888;
+    /* ─── SECTION WRAPPER ─── */
+    section { padding: 64px 24px; }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+    .section-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 40px;
+      line-height: 1.25;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--white); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .pricing-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      background: var(--bg);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .pricing-card:hover {
+      box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+      transform: translateY(-2px);
+    }
+    .pricing-card.featured {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+    .pricing-badge {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.75);
+      padding: 3px 9px;
+      border-radius: 5px;
+      margin-bottom: 16px;
+    }
+    .pricing-card:not(.featured) .pricing-badge {
+      background: var(--light-gray);
+      color: var(--gray);
+    }
+    .pricing-name { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; margin-bottom: 4px; }
+    .pricing-desc { font-size: 12.5px; color: var(--gray); margin-bottom: 20px; line-height: 1.55; }
+    .pricing-card.featured .pricing-desc { color: rgba(255,255,255,0.5); }
+    .pricing-price { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+    .pricing-price span { font-size: 14px; font-weight: 400; color: var(--gray); letter-spacing: 0; }
+    .pricing-card.featured .pricing-price span { color: rgba(255,255,255,0.5); }
+    .pricing-days { font-size: 12px; color: var(--gray); margin-bottom: 22px; }
+    .pricing-card.featured .pricing-days { color: rgba(255,255,255,0.45); }
+    .pricing-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 18px; }
+    .pricing-card.featured .pricing-divider { border-color: rgba(255,255,255,0.12); }
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 24px;
+    }
+    .pricing-features li { font-size: 13px; display: flex; align-items: flex-start; gap: 8px; }
+    .pricing-features li::before {
+      content: '✓';
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gray);
+    }
+    .pricing-card.featured .pricing-features li::before { color: rgba(255,255,255,0.5); }
+    .pricing-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 13px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+    }
+    .pricing-btn:hover { opacity: 0.8; }
+    .pricing-card.featured .pricing-btn { background: var(--white); color: var(--black); }
+    .pricing-card.featured .pricing-btn:hover { opacity: 0.85; }
+    .pricing-note {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: var(--bg);
+      border-radius: 10px;
+      font-size: 12.5px;
+      color: #666;
+      line-height: 1.65;
+      border: 1px solid var(--border);
+    }
+    .pricing-note strong { color: var(--black); }
+
+    /* ─── STYLES ─── */
+    #styles { border-top: 1px solid var(--border); }
+    .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+    .style-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 18px;
+    }
+    .style-icon { font-size: 22px; margin-bottom: 8px; }
+    .style-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .style-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+
+    /* ─── FAQ ─── */
+    #faq { background: var(--white); border-top: 1px solid var(--border); }
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      text-align: left;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+    .faq-q:hover { opacity: 0.7; }
+    .faq-arrow { font-size: 18px; transition: transform 0.2s; flex-shrink: 0; color: var(--gray); }
+    .faq-item.open .faq-arrow { transform: rotate(90deg); }
+    .faq-a {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.75;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-a { max-height: 400px; padding-bottom: 18px; }
+
+    /* ─── CONTRACT ─── */
+    #contract { border-top: 1px solid var(--border); }
+    .contract-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .contract-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 22px;
+    }
+    .contract-icon { font-size: 20px; margin-bottom: 10px; }
+    .contract-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .contract-body { font-size: 12.5px; color: #555; line-height: 1.75; }
+    .contract-body strong { color: var(--black); }
+
+    /* ─── COMMISSION FORM ─── */
+    #commission { border-top: 1px solid var(--border); }
+    .commission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .commission-grid { grid-template-columns: 1fr; }
+    }
+    .commission-info h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+    .commission-info p { font-size: 13.5px; color: #555; line-height: 1.75; margin-bottom: 20px; }
+    .commission-detail {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 12.5px;
+      color: #555;
+      line-height: 1.8;
+    }
+    .commission-detail dt {
+      font-weight: 700;
+      color: var(--black);
+      float: left;
+      clear: left;
+      width: 80px;
+      font-size: 12px;
+    }
+    .commission-detail dd { margin-left: 88px; padding-bottom: 6px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 13px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 5px;
+      letter-spacing: 0.2px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 13.5px;
+      font-family: inherit;
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+      transition: border-color 0.15s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--black); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+      margin-top: 4px;
+    }
+    .form-submit:hover { opacity: 0.8; }
+    .form-note {
+      font-size: 11.5px;
+      color: var(--gray);
+      margin-top: 10px;
+      text-align: center;
       line-height: 1.5;
     }
 
-    /* 링크 버튼들 */
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .link-btn {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 18px 22px;
-      background: #fff;
-      border-radius: 14px;
-      text-decoration: none;
-      color: #1a1a1a;
-      border: 1px solid #ebebeb;
-      transition: all 0.18s ease;
-      position: relative;
-    }
-
-    .link-btn:hover {
-      background: #1a1a1a;
-      color: #fff;
-      border-color: #1a1a1a;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-
-    .link-btn:hover .icon {
-      filter: invert(1);
-    }
-
-    .link-btn:hover .arrow {
-      opacity: 1;
-      color: #fff;
-    }
-
-    .icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
-    }
-
-    .icon-kmong  { background: #f0ede8; }
-    .icon-portfolio { background: #eef0eb; }
-    .icon-insta  { background: #f0e8f0; }
-    .icon-email  { background: #e8ecf0; }
-
-    .link-text {
-      flex: 1;
-    }
-
-    .link-text .label {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.2px;
-    }
-
-    .link-text .sub {
-      font-size: 11.5px;
-      color: #aaa;
-      margin-top: 2px;
-    }
-
-    .link-btn:hover .sub { color: #999; }
-
-    .arrow {
-      font-size: 16px;
-      color: #ccc;
-      opacity: 0.6;
-      transition: opacity 0.18s;
-    }
-
-    /* 푸터 */
-    .footer {
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 24px;
       text-align: center;
-      margin-top: 32px;
-      font-size: 11px;
-      color: #ccc;
+    }
+    .footer-inner { max-width: 860px; margin: 0 auto; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    footer p { font-size: 11.5px; line-height: 1.6; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 52px; }
+      .stat-num { font-size: 18px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <div class="profile">
-      <div class="avatar">KJ</div>
-      <h1>김정만스튜디오</h1>
-      <p>공공기관·대기업 전문 상업용 일러스트<br>크몽 prime · 누적 거래 122건</p>
-    </div>
-
-    <div class="links">
-
-      <a class="link-btn" href="https://kmong.com/gig/437558" target="_blank" rel="noopener">
-        <div class="icon icon-kmong">🖌️</div>
-        <div class="link-text">
-          <div class="label">크몽에서 의뢰하기</div>
-          <div class="sub">상업용 일러스트 · 견적 문의</div>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-
-      <a class="link-btn" href="https://kjmstdo.imweb.me/" target="_blank" rel="noopener">
-        <div class="icon icon-portfolio">🗂️</div>
-        <div class="link-text">
-          <div class="label">포트폴리오 보기</div>
-          <div class="sub">공공기관 · 브랜드 · 캐릭터 작업물</div>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-
-      <a class="link-btn" href="https://www.instagram.com/kjmstdo/" target="_blank" rel="noopener">
-        <div class="icon icon-insta">📷</div>
-        <div class="link-text">
-          <div class="label">인스타그램</div>
-          <div class="sub">@kjmstdo</div>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-
-      <a class="link-btn" href="mailto:kjmstdo.kr@gmail.com">
-        <div class="icon icon-email">✉️</div>
-        <div class="link-text">
-          <div class="label">이메일 문의</div>
-          <div class="sub">kjmstdo.kr@gmail.com</div>
-        </div>
-        <span class="arrow">›</span>
-      </a>
-
-    </div>
-
-    <div class="footer">© 김정만스튜디오</div>
-
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">김정만스튜디오</a>
+    <ul class="nav-links">
+      <li><a href="#pricing">가격 안내</a></li>
+      <li><a href="#contract">계약·저작권</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="https://www.instagram.com/kjmstdo/" target="_blank">Instagram</a></li>
+      <li><a class="nav-cta" href="#commission">의뢰 신청</a></li>
+    </ul>
   </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Commercial Illustration Studio</span>
+  <h1>공공기관·대기업이<br><em>5년째 다시 찾는</em><br>상업용 일러스트</h1>
+  <p class="hero-sub">
+    서울특별시교육청·식품의약품안전처·SK이노베이션 등<br>
+    기업·공공기관 의뢰 전문 1인 스튜디오.<br>
+    저작권 100% 양도 · 전자세금계산서 발행.
+  </p>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">122건</span>
+      <span class="stat-label">누적 거래</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">5.0</span>
+      <span class="stat-label">평점 (97건)</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">Prime</span>
+      <span class="stat-label">크몽 등급</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">30분</span>
+      <span class="stat-label">평균 응답</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients">
+  <p class="clients-label">주요 협업 클라이언트</p>
+  <div class="clients-list">
+    <span class="client-tag">서울특별시교육청</span>
+    <span class="client-tag">식품의약품안전처</span>
+    <span class="client-tag">문화체육관광부</span>
+    <span class="client-tag">경찰청</span>
+    <span class="client-tag">서울시 중구청</span>
+    <span class="client-tag">한국관광공사</span>
+    <span class="client-tag">현대자동차</span>
+    <span class="client-tag">SK이노베이션</span>
+    <span class="client-tag">라이나생명</span>
+    <span class="client-tag">중앙그룹</span>
+    <span class="client-tag">웹케시</span>
+    <span class="client-tag">더현대 팝업</span>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <p class="section-title">Pricing</p>
+    <h2 class="section-heading">작업 요금 안내</h2>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-badge">Standard</div>
+        <div class="pricing-name">단일 오브젝트</div>
+        <div class="pricing-desc">인물·사물·동물 등 단일 피사체 1개, 컬러 일러스트</div>
+        <div class="pricing-price">55,000<span>원~</span></div>
+        <div class="pricing-days">작업일 3일 이내</div>
+        <hr class="pricing-divider">
+        <ul class="pricing-features">
+          <li>피사체 1개 (인물·사물·동물)</li>
+          <li>풀컬러 채색</li>
+          <li>벡터(AI) + 비트맵(PSD) 원본 제공</li>
+          <li>저작권 100% 양도</li>
+          <li>수정 횟수 무제한</li>
+          <li>전자세금계산서 발행</li>
+        </ul>
+        <a class="pricing-btn" href="#commission">의뢰 문의하기</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Deluxe · 인기</div>
+        <div class="pricing-name">배경 포함</div>
+        <div class="pricing-desc">단일 피사체 + 배경 구성, 브랜드·캠페인 비주얼에 적합</div>
+        <div class="pricing-price">220,000<span>원~</span></div>
+        <div class="pricing-days">작업일 5일 이내</div>
+        <hr class="pricing-divider">
+        <ul class="pricing-features">
+          <li>피사체 1개 + 배경 구성 포함</li>
+          <li>풀컬러 채색</li>
+          <li>벡터(AI) + 비트맵(PSD) 원본 제공</li>
+          <li>저작권 100% 양도</li>
+          <li>수정 횟수 무제한</li>
+          <li>전자세금계산서 발행</li>
+        </ul>
+        <a class="pricing-btn" href="#commission">의뢰 문의하기</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-badge">Premium</div>
+        <div class="pricing-name">대형 프로젝트</div>
+        <div class="pricing-desc">피사체 10개 이하, 구성 제한 없는 복합 일러스트</div>
+        <div class="pricing-price">550,000<span>원~</span></div>
+        <div class="pricing-days">작업일 14일 이내</div>
+        <hr class="pricing-divider">
+        <ul class="pricing-features">
+          <li>피사체 최대 10개</li>
+          <li>구성 제한 없음 (지도·인포그래픽 등)</li>
+          <li>벡터(AI) + 비트맵(PSD) 원본 제공</li>
+          <li>저작권 100% 양도</li>
+          <li>수정 횟수 무제한</li>
+          <li>전자세금계산서 발행</li>
+        </ul>
+        <a class="pricing-btn" href="#commission">의뢰 문의하기</a>
+      </div>
+
+    </div>
+
+    <div class="pricing-note">
+      <strong>규모·납기가 특수한 경우</strong> — 캠페인 시리즈, 굿즈, 브랜드 캐릭터 IP 구축, 인쇄용 대형 출력물 등은 아래 의뢰 폼 또는 이메일로 먼저 문의해 주세요. 사용 목적과 납기를 알려주시면 24시간 이내 견적서를 드립니다.
+    </div>
+  </div>
+</section>
+
+<!-- WORK STYLES -->
+<section id="styles">
+  <div class="section-inner">
+    <p class="section-title">Work Style</p>
+    <h2 class="section-heading">작업 스타일</h2>
+    <div class="styles-grid">
+      <div class="style-card">
+        <div class="style-icon">✏️</div>
+        <div class="style-name">라인 드로잉</div>
+        <div class="style-desc">깔끔한 선 위주의 일러스트. 교재·리플렛·인포그래픽에 적합.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-icon">🎨</div>
+        <div class="style-name">플랫 채색</div>
+        <div class="style-desc">명확한 면 분할의 현대적 컬러 일러스트. SNS·광고에 적합.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-icon">📐</div>
+        <div class="style-name">아이소메트릭</div>
+        <div class="style-desc">3D 투영 기반의 입체 일러스트. 지도·공간·IT 서비스 비주얼.</div>
+      </div>
+      <div class="style-card">
+        <div class="style-icon">🗺️</div>
+        <div class="style-name">일러스트 지도</div>
+        <div class="style-desc">공간 정보를 정확히 담은 안내도. 관공서·캠퍼스맵 납품 이력.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRACT & COPYRIGHT -->
+<section id="contract">
+  <div class="section-inner">
+    <p class="section-title">Contract &amp; Copyright</p>
+    <h2 class="section-heading">계약 및 저작권</h2>
+    <div class="contract-grid">
+
+      <div class="contract-card">
+        <div class="contract-icon">©</div>
+        <div class="contract-title">저작권 100% 양도</div>
+        <div class="contract-body">
+          납품 완료와 동시에 모든 저작권이 클라이언트에게 귀속됩니다.<br>
+          온라인·인쇄·옥외·광고·굿즈 등 <strong>전 매체 상업적 이용이 무제한</strong>으로 가능하며,
+          재판매·변형·라이선싱도 의뢰인 재량으로 가능합니다.
+        </div>
+      </div>
+
+      <div class="contract-card">
+        <div class="contract-icon">📄</div>
+        <div class="contract-title">계약서 작성</div>
+        <div class="contract-body">
+          기업·공공기관 의뢰는 <strong>별도 계약서 작성 가능</strong>합니다.
+          발주서 수령, 계약서 날인, 견적서 발행 모두 대응합니다.
+          공공기관 회계 절차 및 기업 구매 프로세스에 맞춰 진행합니다.
+        </div>
+      </div>
+
+      <div class="contract-card">
+        <div class="contract-icon">💳</div>
+        <div class="contract-title">결제 방식</div>
+        <div class="contract-body">
+          <strong>계약금 50%</strong> 입금 후 작업 착수.<br>
+          최종 파일 전달 전 <strong>잔금 50%</strong> 입금.<br>
+          계산서는 잔금 입금 후 즉시 발행합니다.
+          (공공기관 후불 처리 필요 시 사전 협의 가능)
+        </div>
+      </div>
+
+      <div class="contract-card">
+        <div class="contract-icon">🖼️</div>
+        <div class="contract-title">포트폴리오 게재</div>
+        <div class="contract-body">
+          작가 본인 포트폴리오·SNS 게재 여부는 <strong>사전 협의로 결정</strong>합니다.
+          비공개 작업이 필요한 경우 의뢰 시 명시해 주시면 외부에 공개하지 않습니다.
+        </div>
+      </div>
+
+      <div class="contract-card">
+        <div class="contract-icon">↩️</div>
+        <div class="contract-title">취소 및 환불</div>
+        <div class="contract-body">
+          <strong>착수 전</strong>: 계약금 전액 환불<br>
+          <strong>스케치 완료 후</strong>: 계약금 50% 환불<br>
+          <strong>채색 착수 후</strong>: 환불 불가<br>
+          납품 완료 후 저작권이 양도된 결과물은 환불 대상이 아닙니다.
+        </div>
+      </div>
+
+      <div class="contract-card">
+        <div class="contract-icon">🔒</div>
+        <div class="contract-title">원본 파일 보관</div>
+        <div class="contract-body">
+          납품 원본 파일(PSD / AI / Clip Studio)은 작가가 <strong>별도 보관</strong>합니다.
+          다음 시즌 재의뢰 시 동일 캐릭터·색감·톤으로 정확히 이어서 제작 가능합니다.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-inner">
+    <p class="section-title">FAQ</p>
+    <h2 class="section-heading">자주 묻는 질문</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">상업용 일러스트란 무엇인가요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">브랜드·광고·출판·홍보물 등 상업 목적에 사용할 수 있는 일러스트입니다. 작업 완료와 동시에 저작권이 클라이언트에게 100% 양도되어 온라인·인쇄·옥외광고 등 전 매체에 제한 없이 사용 가능합니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">세금계산서 발행이 가능한가요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">사업자등록 완료(시각 디자인업) 상태로 전자세금계산서 즉시 발행 가능합니다. 공공기관 회계 절차와 기업 행정 절차에 맞춰 진행하며, 계약서·발주서가 필요한 경우에도 별도 상담으로 대응합니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">의뢰에서 납품까지 어떻게 진행되나요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">① 문의 접수 (레퍼런스·요청사항) → ② 견적 확인 → ③ 계약금 입금 후 착수 → ④ 스케치 시안 제출 (수정 무제한) → ⑤ 채색 완성 → ⑥ 원본 파일 납품 → ⑦ 잔금 입금 → ⑧ 전자세금계산서 발행. 평균 응답 30분 이내, 주말 상담·작업 모두 가능합니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">한 캐릭터를 여러 시즌에 걸쳐 계속 쓸 수 있나요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">원본 파일을 보관해두면 다음 시즌에도 동일한 캐릭터·색감·톤으로 정확히 재현 가능합니다. SK이노베이션·중앙그룹 등 동일 캐릭터 시리즈를 수십 컷 이상 이어온 이력이 있습니다. AI 이미지와 달리 캐릭터 일관성과 수정 책임이 보장됩니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">AI 이미지와 어떻게 다른가요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">AI 이미지는 저작권 귀속이 불분명하고 동일 캐릭터를 다음 시즌에 그대로 이어 쓸 수 없습니다. 김정만스튜디오는 저작권 100% 양도, 동일 캐릭터 시리즈 무한 확장, 스케치 단계 무제한 수정이 가능합니다. 공공기관·대기업이 AI 이미지 사용 후 재의뢰하는 이유입니다.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">어떤 작업은 받기 어려운가요?<span class="faq-arrow">›</span></button>
+        <div class="faq-a">AI로 제작된 이미지의 수정·보정, 사진 리터칭, 3D 렌더링은 작업 범위 밖입니다. 일러스트 신규 제작이 필요한 브랜드·마케터·공공기관 담당자분께 적합합니다.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMMISSION FORM -->
+<section id="commission">
+  <div class="section-inner">
+    <p class="section-title">Commission</p>
+    <h2 class="section-heading">의뢰 신청하기</h2>
+
+    <div class="commission-grid">
+
+      <div class="commission-info">
+        <h3>의뢰 전 체크리스트</h3>
+        <p>빠르고 정확한 시안을 위해<br>아래 내용을 미리 준비해 주세요.</p>
+        <div class="commission-detail">
+          <dl>
+            <dt>01 사이즈</dt>
+            <dd>요청 사이즈 또는 컷 비율</dd>
+            <dt>02 핵심</dt>
+            <dd>시안에서 가장 잘 표현되어야 할 부분</dd>
+            <dt>03 레퍼런스</dt>
+            <dd>참고 자료 — 구체적으로 마음에 드는 부분</dd>
+            <dt>04 납기·예산</dt>
+            <dd>희망 납품일 및 예산 범위</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div>
+        <form id="inquiry-form" onsubmit="handleSubmit(event)">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>담당자 성함 *</label>
+              <input type="text" id="name" placeholder="홍길동" required>
+            </div>
+            <div class="form-group">
+              <label>브랜드 / 회사명</label>
+              <input type="text" id="company" placeholder="(주)OO브랜드">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>연락처 (이메일 또는 인스타 @) *</label>
+            <input type="text" id="contact" placeholder="email@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>의뢰 유형 *</label>
+            <select id="type" required>
+              <option value="">선택해 주세요</option>
+              <option>캠페인·홍보물 일러스트</option>
+              <option>브랜드 캐릭터 IP 구축</option>
+              <option>아이소메트릭·지도</option>
+              <option>출판·교재 삽화</option>
+              <option>SNS·디지털 콘텐츠</option>
+              <option>굿즈 디자인</option>
+              <option>기타</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>사용 플랫폼</label>
+              <select id="platform">
+                <option value="">선택</option>
+                <option>온라인 (웹·앱·SNS)</option>
+                <option>인쇄물 (리플렛·책자)</option>
+                <option>옥외광고</option>
+                <option>굿즈·상품</option>
+                <option>복합 (온라인+인쇄)</option>
+                <option>미정·협의</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>납품 희망일</label>
+              <input type="date" id="deadline">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>예산 범위</label>
+            <select id="budget">
+              <option value="">선택</option>
+              <option>5 – 20만원</option>
+              <option>20 – 50만원</option>
+              <option>50 – 100만원</option>
+              <option>100 – 200만원</option>
+              <option>200만원 이상</option>
+              <option>협의 희망</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>프로젝트 개요 *</label>
+            <textarea id="detail" placeholder="작업 목적, 컷 수, 스타일 방향, 레퍼런스 링크 등을 간략히 적어주세요." required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">문의 보내기</button>
+          <p class="form-note">검토 후 24시간 이내 회신드립니다.<br>급한 문의는 인스타그램 DM(@kjmstdo)으로도 가능합니다.</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="https://kjmstdo.imweb.me/" target="_blank">포트폴리오</a>
+      <a href="https://www.instagram.com/kjmstdo/" target="_blank">Instagram @kjmstdo</a>
+      <a href="mailto:kjmstdo.kr@gmail.com">kjmstdo.kr@gmail.com</a>
+    </div>
+    <p>© 2026 김정만스튜디오. All rights reserved.<br>
+    사업자등록완료 (시각 디자인업) · 전자세금계산서 발행 가능</p>
+  </div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Form → mailto
+  function handleSubmit(e) {
+    e.preventDefault();
+    const name     = document.getElementById('name').value;
+    const company  = document.getElementById('company').value;
+    const contact  = document.getElementById('contact').value;
+    const type     = document.getElementById('type').value;
+    const platform = document.getElementById('platform').value;
+    const deadline = document.getElementById('deadline').value;
+    const budget   = document.getElementById('budget').value;
+    const detail   = document.getElementById('detail').value;
+
+    const subject = encodeURIComponent(`[일러스트 의뢰] ${type} — ${name}${company ? ' / ' + company : ''}`);
+    const body = encodeURIComponent(
+      `담당자: ${name}` +
+      (company ? `\n회사·브랜드: ${company}` : '') +
+      `\n연락처: ${contact}` +
+      `\n의뢰 유형: ${type}` +
+      (platform ? `\n사용 플랫폼: ${platform}` : '') +
+      (deadline ? `\n납품 희망일: ${deadline}` : '') +
+      (budget ? `\n예산 범위: ${budget}` : '') +
+      `\n\n프로젝트 개요:\n${detail}`
+    );
+    window.location.href = `mailto:kjmstdo.kr@gmail.com?subject=${subject}&body=${body}`;
+  }
+</script>
+
 </body>
 </html>
